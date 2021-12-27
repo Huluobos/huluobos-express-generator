@@ -8,12 +8,15 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const imgLatex = require('./routes/img-latex');
 const imgLatexMap = require('./routes/img-latex-map');
-const tsChina = require('./routes/ts-china');
+const file = require('./routes/file');
 // -------------------------------------------------------------------------------------------------------------
 var app = express();
 
-// view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
+app.set('file', path.join(__dirname, 'file'));
+
+// view engine setup
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
@@ -24,9 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // -------------------------------------------------------------------------------------------------------------
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/imgLatex', imgLatex);
 app.use('/imgLatexMap', imgLatexMap);
-app.use('/tsChina', tsChina);
+app.use('/file', file);
 // -------------------------------------------------------------------------------------------------------------
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
