@@ -13,11 +13,16 @@ const file = require('./routes/file');
 var app = express();
 
 
-app.set('views', path.join(__dirname, 'views'));
 app.set('file', path.join(__dirname, 'file'));
 
 // view engine setup
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// var ejs=require('ejs')
+// app.engine('.html',ejs.__express)
+// app.set('view engine','html')
+// app.set('views','./views'))
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,9 +30,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // -------------------------------------------------------------------------------------------------------------
-app.use('/', indexRouter);
+app.use('/', indexRouter); //导航主页
 app.use('/users', usersRouter);
-
 app.use('/imgLatex', imgLatex);
 app.use('/imgLatexMap', imgLatexMap);
 app.use('/file', file);
